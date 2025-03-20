@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/lib/utils';
-import { X, LogOut } from 'lucide-react';
+import { X, LogOut, Bike, Package, UserCircle } from 'lucide-react';
 
 interface DrawerMenuProps {
   isOpen: boolean;
@@ -25,6 +25,11 @@ const DrawerMenu = ({ isOpen, onClose }: DrawerMenuProps) => {
 
   const handleContactClick = (contactId: string) => {
     navigate(`/contact/${contactId}`);
+    onClose();
+  };
+  
+  const handleDeliveryClick = (path: string) => {
+    navigate(path);
     onClose();
   };
 
@@ -81,6 +86,57 @@ const DrawerMenu = ({ isOpen, onClose }: DrawerMenuProps) => {
           )}
           
           <div className="flex-1 overflow-y-auto">
+            {/* Delivery Dashboard Section */}
+            <div className="p-4 border-b border-gray-100">
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                Delivery Dashboard
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => handleDeliveryClick('/delivery-dashboard')}
+                    className="w-full flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors focus-ring"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
+                      <Bike size={20} />
+                    </div>
+                    <div className="ml-3 text-left">
+                      <span className="font-medium text-gray-900">Available Deliveries</span>
+                      <p className="text-sm text-gray-500">Find delivery jobs</p>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleDeliveryClick('/my-deliveries')}
+                    className="w-full flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors focus-ring"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
+                      <Package size={20} />
+                    </div>
+                    <div className="ml-3 text-left">
+                      <span className="font-medium text-gray-900">My Deliveries</span>
+                      <p className="text-sm text-gray-500">Track your deliveries</p>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleDeliveryClick('/delivery-profile')}
+                    className="w-full flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors focus-ring"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
+                      <UserCircle size={20} />
+                    </div>
+                    <div className="ml-3 text-left">
+                      <span className="font-medium text-gray-900">Delivery Profile</span>
+                      <p className="text-sm text-gray-500">Manage your profile</p>
+                    </div>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
             <div className="p-4">
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
                 Contacts
