@@ -22,14 +22,14 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
   
   return (
     <div 
-      className="rounded-2xl bg-white shadow-card overflow-hidden transition-all duration-300 hover:shadow-elevated focus-within:ring-2 focus-within:ring-teal-500 animate-slide-up"
+      className="rounded-lg bg-white shadow-card overflow-hidden transition-all duration-300 hover:shadow-elevated focus-within:ring-2 focus-within:ring-teal-500 animate-slide-up"
       style={{ animationDelay: `${parseInt(id) * 50}ms`, animationFillMode: 'backwards' }}
     >
       <button 
         className="w-full text-left focus:outline-none"
         onClick={handleClick}
       >
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[1/1] overflow-hidden">
           <div className={cn(
             "absolute inset-0 bg-gray-200",
             !imageLoaded && "image-loading"
@@ -44,15 +44,15 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
             onLoad={() => setImageLoaded(true)}
           />
           {badge && (
-            <div className="absolute top-2 right-2 bg-teal-600 text-white text-xs px-2 py-1 rounded-full font-medium">
+            <div className="absolute top-1 right-1 bg-teal-600 text-white text-xs px-1.5 py-0.5 rounded-full font-medium">
               {badge}
             </div>
           )}
         </div>
         
-        <div className="p-4">
-          <h3 className="font-medium text-gray-900 line-clamp-2">{title}</h3>
-          <p className="text-sm text-gray-500 mt-1">{location}</p>
+        <div className="p-2">
+          <h3 className="font-medium text-gray-900 text-sm line-clamp-1">{title}</h3>
+          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{location}</p>
         </div>
       </button>
     </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import JobCard from '@/components/ui/JobCard';
 import AddItemModal from '@/components/ui/AddItemModal';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Mock data
 const mockJobs = [
@@ -48,6 +49,7 @@ const mockJobs = [
 ];
 
 const Marketplace = () => {
+  const isMobile = useIsMobile();
   const [jobs, setJobs] = useState(mockJobs);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   
@@ -82,7 +84,7 @@ const Marketplace = () => {
         </button>
       </div>
       
-      <div className="grid grid-cols-2 gap-4">
+      <div className={`grid ${isMobile ? 'grid-cols-2' : 'grid-cols-3 md:grid-cols-4 lg:grid-cols-5'} gap-3`}>
         {jobs.map((job) => (
           <JobCard 
             key={job.id}
