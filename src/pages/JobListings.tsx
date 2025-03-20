@@ -4,14 +4,14 @@ import { Plus } from 'lucide-react';
 import ContactCard from '@/components/ui/ContactCard';
 import AddItemModal from '@/components/ui/AddItemModal';
 
-// Mock data
+// Updated mock data to include the avatar property
 const mockContacts = [
-  { id: '1', name: 'Aurora Raja', role: 'Nourisha' },
-  { id: '2', name: 'Deepinder Kaur', role: 'Artisan' },
-  { id: '3', name: 'Faiza Ali', role: 'Wellness Specialist' },
-  { id: '4', name: 'Meena Sharma', role: 'Crafter' },
-  { id: '5', name: 'Priya Patel', role: 'Herbal Tea Maker' },
-  { id: '6', name: 'Lakshmi Reddy', role: 'Textile Artist' },
+  { id: '1', name: 'Aurora Raja', role: 'Nourisha', avatar: undefined },
+  { id: '2', name: 'Deepinder Kaur', role: 'Artisan', avatar: undefined },
+  { id: '3', name: 'Faiza Ali', role: 'Wellness Specialist', avatar: undefined },
+  { id: '4', name: 'Meena Sharma', role: 'Crafter', avatar: undefined },
+  { id: '5', name: 'Priya Patel', role: 'Herbal Tea Maker', avatar: undefined },
+  { id: '6', name: 'Lakshmi Reddy', role: 'Textile Artist', avatar: undefined },
 ];
 
 const JobListings = () => {
