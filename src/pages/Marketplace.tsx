@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import JobCard from '@/components/ui/JobCard';
@@ -83,8 +84,7 @@ const Marketplace = () => {
       id: `${jobs.length + 1}`,
       title: data.title,
       location: data.location,
-    image: data.image ? URL.createObjectURL(data.image) : mockJobs[0].image,
-
+      image: data.image ? URL.createObjectURL(data.image) : 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       price: data.price || '₹499',
       description: data.description || 'No description provided.',
     };
@@ -94,21 +94,30 @@ const Marketplace = () => {
   };
 
   const handleAddToCart = (productId: string) => {
+    toast({
+      title: "Added to cart",
+      description: "Product has been added to your cart",
+    });
     console.log(`Added to cart: ${productId}`);
   };
 
   const handleOrder = (productId: string) => {
+    toast({
+      title: "Order placed",
+      description: "Your order has been placed successfully",
+      variant: "default",
+    });
     console.log(`Ordered: ${productId}`);
   };
 
   return (
     <div className="px-4 py-6 page-transition">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Job Catalog</h1>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Marketplace</h1>
         <button
           onClick={() => setIsAddModalOpen(true)}
           className="flex items-center justify-center p-3 bg-teal-600 text-white rounded-full shadow-subtle hover:bg-teal-700 transition-colors focus-ring"
-          aria-label="Add Job"
+          aria-label="Add Product"
         >
           <Plus size={20} />
         </button>
@@ -131,16 +140,16 @@ const Marketplace = () => {
       <AddItemModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        title="Add New Job"
+        title="Add New Product"
         fields={[
-          { name: 'title', label: 'Job Title', type: 'text', required: true, placeholder: 'Enter job title' },
-          { name: 'location', label: 'Location', type: 'text', required: true, placeholder: 'Enter location' },
+          { name: 'title', label: 'Product Title', type: 'text', required: true, placeholder: 'Enter product title' },
+          { name: 'location', label: 'Seller', type: 'text', required: true, placeholder: 'Enter seller name' },
           { name: 'price', label: 'Price', type: 'text', required: true, placeholder: 'Enter price' },
           { name: 'description', label: 'Description', type: 'textarea', required: false, placeholder: 'Enter product description' },
           { name: 'image', label: 'Photo', type: 'image' }
         ]}
         onSubmit={handleAddJob}
-        submitLabel="Add Job"
+        submitLabel="Add Product"
       />
 
       {selectedProduct && (

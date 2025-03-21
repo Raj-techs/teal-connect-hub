@@ -22,7 +22,7 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
   
   return (
     <div 
-      className="rounded-lg bg-white shadow-card overflow-hidden transition-all duration-300 hover:shadow-elevated focus-within:ring-2 focus-within:ring-teal-500 animate-slide-up"
+      className="rounded-lg bg-white dark:bg-gray-800 shadow-card overflow-hidden transition-all duration-300 hover:shadow-elevated focus-within:ring-2 focus-within:ring-teal-500 animate-slide-up"
       style={{ animationDelay: `${parseInt(id) * 50}ms`, animationFillMode: 'backwards' }}
     >
       <button 
@@ -31,12 +31,11 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
       >
         <div className="relative aspect-[1/1] overflow-hidden">
           <div className={cn(
-            "absolute inset-0 bg-gray-200",
+            "absolute inset-0 bg-gray-200 dark:bg-gray-700",
             !imageLoaded && "image-loading"
           )}></div>
           <img
-            src="https://5.imimg.com/data5/MO/JW/MY-26657759/photo-craft-work.jpg"
-
+            src={image}
             alt={title}
             className={cn(
               "w-full h-full object-cover transition-opacity duration-500",
@@ -52,8 +51,8 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
         </div>
         
         <div className="p-2">
-          <h3 className="font-medium text-gray-900 text-sm line-clamp-1">{title}</h3>
-          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{location}</p>
+          <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm line-clamp-1">{title}</h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">{location}</p>
         </div>
       </button>
     </div>
