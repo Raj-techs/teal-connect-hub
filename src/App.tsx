@@ -19,6 +19,7 @@ import DeliveryDashboard from "@/pages/DeliveryDashboard";
 import MyDeliveries from "@/pages/MyDeliveries";
 import DeliveryRegistration from "@/pages/DeliveryRegistration";
 import DeliveryProfile from "@/pages/DeliveryProfile";
+import MyOrders from "@/pages/MyOrders";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
                 <Route path="/ai-chat" element={<AIChat />} />
                 <Route path="/job-listings" element={<JobListings />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/my-orders" element={<MyOrders />} />
                 
                 {/* Delivery routes */}
                 <Route path="/delivery-dashboard" element={<DeliveryDashboard />} />
