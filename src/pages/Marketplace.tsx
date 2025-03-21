@@ -13,7 +13,7 @@ const mockJobs = [
     id: '1',
     title: 'Handmade Embroidered Buntings',
     location: 'Village Bazaar Warehouse',
-    image: 'https://5.imimg.com/data5/MO/JW/MY-26657759/photo-craft-work.jpg',
+    image: 'https://images.unsplash.com/photo-1489367874814-f5d040621dd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
     badge: '30+',
     price: '₹899',
     description: 'Beautiful handmade embroidered buntings made by skilled artisans from local villages. Each piece is unique and tells a story of tradition and craftsmanship.'

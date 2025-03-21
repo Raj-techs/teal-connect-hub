@@ -12,7 +12,7 @@ const mockOpportunities = [
     id: '1',
     title: 'Organic Herbal Teas',
     description: 'Join our tea production team to create high-quality herbal teas',
-    image: 'https://images.unsplash.com/photo-1563911892437-1feda0179e1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
     requirements: [
       'Experience with herb processing',
       'Knowledge of tea blending techniques',
