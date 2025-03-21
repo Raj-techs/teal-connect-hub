@@ -133,15 +133,15 @@ const AIChat = () => {
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)] page-transition">
       <div className="px-4 py-5 border-b border-gray-100">
-        <h1 className="text-2xl font-semibold text-gray-900">AI Assistant</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">AI</h1>
         <div className="flex items-center mt-2">
           <div className="w-8 h-8 rounded-full bg-teal-600 flex items-center justify-center">
             <span className="text-white text-xs font-medium">AI</span>
           </div>
-          <p className="ml-2 text-gray-700 font-medium">Rural Helper</p>
+          <p className="ml-2 text-gray-700 font-medium">My Agent</p>
         </div>
       </div>
-
+      
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message) => (
           <div
@@ -157,13 +157,13 @@ const AIChat = () => {
                 "max-w-[80%] rounded-2xl px-4 py-3",
                 message.sender === 'user'
                   ? "bg-teal-500 text-white"
-                  : "bg-gray-200 text-gray-800"
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
               )}
             >
               <p>{message.text}</p>
               <p className={cn(
                 "text-xs mt-1 text-right",
-                message.sender === 'user' ? "text-teal-100" : "text-gray-500"
+                message.sender === 'user' ? "text-teal-100" : "text-gray-500 dark:text-gray-400"
               )}>
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
@@ -172,15 +172,15 @@ const AIChat = () => {
         ))}
         <div ref={messagesEndRef} />
       </div>
-
+      
       <div className="p-4 border-t border-gray-100 bg-white">
         <div className="relative flex items-center">
           <input
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-            placeholder="Ask me about jobs, business, or rural support..."
+            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            placeholder="Type your message..."
             className="w-full px-4 py-3 pr-24 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500"
           />
           <div className="absolute right-2 flex space-x-1">
@@ -190,7 +190,7 @@ const AIChat = () => {
                 "p-2 rounded-full transition-colors focus-ring",
                 isRecording 
                   ? "bg-red-500 text-white animate-pulse" 
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  : "bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500"
               )}
               aria-label="Voice input"
             >
@@ -200,7 +200,12 @@ const AIChat = () => {
             <button
               onClick={handleSendMessage}
               disabled={!inputText.trim()}
-              className="p-2 rounded-full bg-teal-500 text-white hover:bg-teal-600"
+              className={cn(
+                "p-2 rounded-full transition-colors focus-ring",
+                inputText.trim()
+                  ? "bg-teal-500 text-white hover:bg-teal-600" 
+                  : "bg-gray-200 text-gray-400"
+              )}
               aria-label="Send message"
             >
               <Send size={20} />
