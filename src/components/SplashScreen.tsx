@@ -28,8 +28,11 @@ const SplashScreen = () => {
           </div>
         </div>
         <h1 className="text-2xl font-semibold text-gray-900 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
-          <span className="text-teal-600">Connect</span>Hub
+          <span className="text-teal-600">Empower</span>Her
         </h1>
+        <p className="text-sm text-gray-500 mt-2 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'backwards' }}>
+          Connecting Rural Women to Opportunities
+        </p>
       </div>
     </div>
   );

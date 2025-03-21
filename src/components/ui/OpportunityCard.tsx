@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronRight } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -15,6 +15,14 @@ interface OpportunityCardProps {
 const OpportunityCard = ({ id, title, description, image, onClick }: OpportunityCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [imgSrc, setImgSrc] = useState(image);
+  
+  // Reset image states when image prop changes
+  useEffect(() => {
+    setImgSrc(image);
+    setImageLoaded(false);
+    setImageError(false);
+  }, [image]);
   
   const handleClick = () => {
     if (onClick) {
@@ -23,9 +31,14 @@ const OpportunityCard = ({ id, title, description, image, onClick }: Opportunity
   };
   
   const handleImageError = () => {
-    console.error(`Failed to load image: ${image}`);
+    console.error(`Failed to load image: ${imgSrc}`);
     setImageError(true);
     setImageLoaded(true); // Mark as loaded to remove loading state
+    
+    // Try with a fallback image
+    if (imgSrc !== 'https://images.unsplash.com/photo-1607350195728-39877630527e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') {
+      setImgSrc('https://images.unsplash.com/photo-1607350195728-39877630527e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+    }
   };
   
   return (
@@ -49,7 +62,7 @@ const OpportunityCard = ({ id, title, description, image, onClick }: Opportunity
               </div>
             ) : (
               <img
-                src={image}
+                src={imgSrc}
                 alt={title}
                 className={cn(
                   "w-full h-full object-cover transition-opacity duration-500",
@@ -57,6 +70,8 @@ const OpportunityCard = ({ id, title, description, image, onClick }: Opportunity
                 )}
                 onLoad={() => setImageLoaded(true)}
                 onError={handleImageError}
+                loading="eager"
+                crossOrigin="anonymous"
               />
             )}
           </div>

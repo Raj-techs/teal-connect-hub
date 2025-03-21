@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -15,6 +15,14 @@ interface JobCardProps {
 const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [imgSrc, setImgSrc] = useState(image);
+  
+  // Reset image states when image prop changes
+  useEffect(() => {
+    setImgSrc(image);
+    setImageLoaded(false);
+    setImageError(false);
+  }, [image]);
   
   const handleClick = () => {
     if (onClick) {
@@ -23,9 +31,14 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
   };
   
   const handleImageError = () => {
-    console.error(`Failed to load image: ${image}`);
+    console.error(`Failed to load image: ${imgSrc}`);
     setImageError(true);
     setImageLoaded(true); // Mark as loaded to remove loading state
+    
+    // Try with a fallback image
+    if (imgSrc !== 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') {
+      setImgSrc('https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+    }
   };
   
   return (
@@ -48,7 +61,7 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
             </div>
           ) : (
             <img
-              src={image}
+              src={imgSrc}
               alt={title}
               className={cn(
                 "w-full h-full object-cover transition-opacity duration-500",
@@ -56,6 +69,8 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
               )}
               onLoad={() => setImageLoaded(true)}
               onError={handleImageError}
+              loading="eager"
+              crossOrigin="anonymous"
             />
           )}
           
