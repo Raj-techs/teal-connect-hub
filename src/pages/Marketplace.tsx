@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import JobCard from '@/components/ui/JobCard';
@@ -13,7 +12,7 @@ const mockJobs = [
     id: '1',
     title: 'Handmade Embroidered Buntings',
     location: 'Village Bazaar Warehouse',
-    image: 'https://images.unsplash.com/photo-1594142404303-8b2cc0b4c9c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    image: 'https://5.imimg.com/data5/MO/JW/MY-26657759/photo-craft-work.jpg',
     badge: '30+',
     price: '₹899',
     description: 'Beautiful handmade embroidered buntings made by skilled artisans from local villages. Each piece is unique and tells a story of tradition and craftsmanship.'
@@ -80,12 +79,12 @@ const Marketplace = () => {
   };
   
   const handleAddJob = (data: Record<string, any>) => {
-    // In a real app, you'd send this to an API
     const newJob = {
       id: `${jobs.length + 1}`,
       title: data.title,
       location: data.location,
-      image: data.image ? URL.createObjectURL(data.image) : 'https://images.unsplash.com/photo-1587614313085-5da51cebd8ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    image: data.image ? URL.createObjectURL(data.image) : mockJobs[0].image,
+
       price: data.price || '₹499',
       description: data.description || 'No description provided.',
     };
@@ -96,12 +95,10 @@ const Marketplace = () => {
 
   const handleAddToCart = (productId: string) => {
     console.log(`Added to cart: ${productId}`);
-    // In a real app, you would add to cart in a cart context or make an API call
   };
 
   const handleOrder = (productId: string) => {
     console.log(`Ordered: ${productId}`);
-    // In a real app, you would make an API call to create an order
   };
 
   return (

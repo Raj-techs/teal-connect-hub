@@ -35,7 +35,8 @@ const JobCard = ({ id, title, location, image, badge, onClick }: JobCardProps) =
             !imageLoaded && "image-loading"
           )}></div>
           <img
-            src={image}
+            src="https://5.imimg.com/data5/MO/JW/MY-26657759/photo-craft-work.jpg"
+
             alt={title}
             className={cn(
               "w-full h-full object-cover transition-opacity duration-500",
